@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Thông tin cá nhân{% endblock %}
+{% block content %}
+<h1>Thông tin cá nhân</h1>
+<div class="card col-md-6"><div class="card-body">
+  <p><strong>Mã học viên:</strong> {{ student.student_code }}</p>
+  <p><strong>Họ và tên:</strong> {{ user.full_name }}</p>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+</div></div>
+{% endblock %}

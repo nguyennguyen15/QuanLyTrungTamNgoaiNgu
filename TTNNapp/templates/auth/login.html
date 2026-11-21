@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Đăng nhập{% endblock %}
+{% block content %}
+<h1>Đăng nhập</h1>
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}<div class="alert alert-{{ category }}">{{ message }}</div>{% endfor %}
+{% endwith %}
+<form method="post" class="col-md-5">
+  <label class="form-label">Email</label>
+  <input type="email" name="email" class="form-control mb-3" required>
+  <label class="form-label">Mật khẩu</label>
+  <input type="password" name="password" class="form-control mb-3" required>
+  <button class="btn btn-primary">Đăng nhập</button>
+</form>
+{% endblock %}

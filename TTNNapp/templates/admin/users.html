@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Quản lý tài khoản{% endblock %}
+{% block content %}
+<h1>Quản lý tài khoản</h1>
+{% with messages = get_flashed_messages(with_categories=true) %}{% for category, message in messages %}<div class="alert alert-{{ category }}">{{ message }}</div>{% endfor %}{% endwith %}
+<div class="card mb-4"><div class="card-body"><h2 class="h5">Tạo tài khoản</h2>
+<form method="post" class="row g-3">
+<div class="col-md-6"><label class="form-label">Họ tên</label><input name="full_name" class="form-control" required></div>
+<div class="col-md-6"><label class="form-label">Email Gmail</label><input name="email" type="email" class="form-control" placeholder="ten@gmail.com" required></div>
+<div class="col-md-4"><label class="form-label">Mật khẩu</label><input name="password" type="password" minlength="6" class="form-control" required></div>
+<div class="col-md-4"><label class="form-label">Vai trò</label><select name="role_code" class="form-select" required>{% for role in roles %}<option value="{{ role.role_code }}">{{ role.role_name }}</option>{% endfor %}</select></div>
+<div class="col-md-4"><label class="form-label">Mã hồ sơ</label><input name="profile_code" class="form-control" placeholder="HV001 / GV001 / NV001"></div>
+<div class="col-12"><small>Admin không cần mã hồ sơ. Mã học viên được hệ thống tự sinh; Giáo viên và Nhân viên phải có mã riêng.</small></div>
+<div class="col-12"><button class="btn btn-primary">Lưu vào MySQL</button></div>
+</form></div></div>
+<h2 class="h4">Danh sách tài khoản</h2>
+<table class="table table-striped bg-white"><thead><tr><th>ID</th><th>Họ tên</th><th>Email</th><th>Vai trò</th><th>Trạng thái</th></tr></thead><tbody>
+{% for user in users %}<tr><td>{{ user.user_id }}</td><td>{{ user.full_name }}</td><td>{{ user.email }}</td><td>{{ user.role.role_name }}</td><td>{{ user.account_status }}</td></tr>{% else %}<tr><td colspan="5" class="text-center">Chưa có tài khoản.</td></tr>{% endfor %}
+</tbody></table>
+{% endblock %}

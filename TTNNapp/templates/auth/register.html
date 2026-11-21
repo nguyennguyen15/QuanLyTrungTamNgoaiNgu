@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Đăng ký học viên{% endblock %}
+{% block content %}
+<div class="row justify-content-center"><div class="col-md-6 col-lg-5">
+<h1>Đăng ký tài khoản học viên</h1>
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% for category, message in messages %}<div class="alert alert-{{ category }}">{{ message }}</div>{% endfor %}
+{% endwith %}
+<form method="post">
+  <label class="form-label">Họ và tên</label><input name="full_name" class="form-control mb-3" required>
+  <label class="form-label">Email Gmail</label><input type="email" name="email" class="form-control mb-3" placeholder="ten@gmail.com" required>
+  <label class="form-label">Mật khẩu</label><input type="password" name="password" minlength="6" class="form-control mb-3" required>
+  <label class="form-label">Xác nhận mật khẩu</label><input type="password" name="confirm_password" minlength="6" class="form-control mb-3" required>
+  <button class="btn btn-primary">Đăng ký</button>
+  <a class="btn btn-link" href="{{ url_for('auth.login') }}">Đã có tài khoản?</a>
+</form></div></div>
+{% endblock %}
